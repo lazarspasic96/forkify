@@ -24,11 +24,17 @@
   },
   "homepage": "https://github.com/Laks96/forkify#readme",
   "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
     "html-webpack-plugin": "^4.3.0",
-    "webpack": "^4.44.1"
+    "web-dev-server": "^3.0.22",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "core-js": "^3.6.5",
+    "regenerator-runtime": "^0.13.7"
   }
 }

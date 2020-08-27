@@ -1,0 +1,24 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "vanilla js project based on udemy course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laks96/forkify.git"
+  },
+  "keywords": [
+    "vanilla",
+    "js",
+    "project"
+  ],
+  "author": "Lazar Spasic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Laks96/forkify/issues"
+  },
+  "homepage": "https://github.com/Laks96/forkify#readme"
+}

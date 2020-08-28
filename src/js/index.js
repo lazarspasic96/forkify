@@ -1,5 +1,10 @@
-console.log('eeee')
+import axios from 'axios';
 
-import x from './testmodule'
+async function getRecepie () {
+const result =  await axios('https://forkify-api.herokuapp.com/api/get?rId=47746')
+console.log(result)
+console.log(this)
+}
 
-console.log(`babe work just too good ${x}`)
+getRecepie()
+

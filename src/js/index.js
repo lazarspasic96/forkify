@@ -21,7 +21,7 @@ const controlSearch = async () => {
         renderLoader(domElements.results)
         await state.search.searchResult(query)
         console.log(state.search.result)
-        
+
         //render result on the UI
         clearLoader(domElements.results)
         SearchView.render(state.search.result)
@@ -36,8 +36,13 @@ domElements.searchForm.addEventListener('submit', event => {
 
 })
 
-domElements.resultPages.addEventListener('onclick', event => {
-    
-   
+domElements.resultPages.addEventListener('click', event => {
+    const btn = event.target.closest('button')
+    if (btn) {
+        let pageNum = parseInt(btn.dataset.pagenum)
+        console.log(btn.dataset)
+        SearchView.clearResult()
+        SearchView.render(state.search.result, pageNum)
+    }
 })
 

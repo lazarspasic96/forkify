@@ -1,4 +1,5 @@
 import * as domElements from '../base'
+import {button} from '../../shared/paginationButton'
 
 
 export const getInput = () => domElements.searchInput.value
@@ -22,8 +23,31 @@ const singRecipe = (recipe) => {
    domElements.searchList.insertAdjacentHTML('beforeend', listItem) 
 }
 
-export const render = (recipes) => {
-    console.log(recipes)
-    recipes.forEach(recipe => singRecipe(recipe))
+const buttons = (page, numResults, resPerPage) => {
+    const totalPages = Math.ceil(numResults / resPerPage)
+    let renderButtons;
+    if(page === 1) {
+        // button for next
+       renderButtons = button('next', page)
+    }
+    else if(page < 1 && page < totalPages) {
+        //both button
+
+        renderButtons = `${button('prev', page)} ${button('next', page)}`
+    }
+    else if(page === totalPages) {
+        //buton for prev
+       renderButtons = button('prev', page)
+    }
+
+    return renderButtons
 }
+
+export const render = (recipes, page = 1, resPerPage = 10) => {
+    const start = (page - 1) * resPerPage
+    const end = page * resPerPage
+    recipes.slice(start, end).forEach(recipe => singRecipe(recipe))
+    domElements.resultPages.insertAdjacentHTML('afterbegin', buttons(page, recipes.length, resPerPage))
+}
+
 

@@ -21,9 +21,7 @@ const controlSearch = async () => {
         renderLoader(domElements.results)
         await state.search.searchResult(query)
         console.log(state.search.result)
-
-
-
+        
         //render result on the UI
         clearLoader(domElements.results)
         SearchView.render(state.search.result)
@@ -36,5 +34,10 @@ domElements.searchForm.addEventListener('submit', event => {
     event.preventDefault()
     controlSearch()
 
+})
+
+domElements.resultPages.addEventListener('onclick', event => {
+    
+   
 })
 

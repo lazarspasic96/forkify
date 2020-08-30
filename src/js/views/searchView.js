@@ -1,5 +1,6 @@
 import * as domElements from '../base'
 
+
 export const getInput = () => domElements.searchInput.value
 export const clearInput = () => domElements.searchInput.value = ''
 export const clearResult = () => domElements.searchList.innerHTML = ''
@@ -25,3 +26,4 @@ export const render = (recipes) => {
     console.log(recipes)
     recipes.forEach(recipe => singRecipe(recipe))
 }
+

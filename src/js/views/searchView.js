@@ -13,7 +13,7 @@ export const clearResult = () => {
 const singRecipe = (recipe) => {
     const listItem = `
                 <li>
-                    <a class="results__link results__link--active" href="#23456">
+                    <a class="results__link results__link--active" href="#${recipe.recipe_id}">
                         <figure class="results__fig">
                             <img src="${recipe.image_url}" alt="Test">
                         </figure>
@@ -53,5 +53,7 @@ export const render = (recipes, page = 1, resPerPage = 10) => {
     recipes.slice(start, end).forEach(recipe => singRecipe(recipe))
     domElements.resultPages.insertAdjacentHTML('afterbegin', buttons(page, recipes.length, resPerPage = 10))
 }
+
+
 
 

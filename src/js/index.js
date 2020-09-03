@@ -10,25 +10,32 @@ const state = {}
 
 const controlSearch = async (id) => {
 
-    //get query from the view
-    const query = SearchView.getInput()
-    if (query) {
-        // new search object added to the central state
-        state.search = new Search(query)
+    try {
+        //get query from the view
+        const query = SearchView.getInput()
+        if (query) {
+            // new search object added to the central state
+            state.search = new Search(query)
 
-        //prepare UI for the result
-        SearchView.clearInput()
-        SearchView.clearResult()
-        renderLoader(domElements.results)
-        await state.search.searchResult(query)
-        console.log(state.search.result)
+            //prepare UI for the result
+            SearchView.clearInput()
+            SearchView.clearResult()
+            renderLoader(domElements.results)
+            await state.search.searchResult(query)
+            console.log(state.search.result)
 
-        //render result on the UI
-        clearLoader(domElements.results)
-        SearchView.render(state.search.result)
+            //render result on the UI
+            clearLoader(domElements.results)
+            SearchView.render(state.search.result)
 
 
+        }
+    } catch (error) {
+        alert(`Something is wrong ${error}`)
     }
+
+
+
 }
 
 domElements.searchForm.addEventListener('submit', event => {
@@ -52,24 +59,26 @@ domElements.resultPages.addEventListener('click', event => {
 
 const controlRecipe = async (id) => {
 
-    if (id) {
+    try {
+        //set new single recipe to the state
+        state.singleRecipe = new Recipe(id)
 
+        //prepare ui and store results of recipe
 
-        try {
-            //set new single recipe to the state
-            state.singleRecipe = new Recipe(id)
+        await state.singleRecipe.getSingleRecipe()
+        state.singleRecipe.coockTime()
+        state.singleRecipe.serving()
 
-            //prepare ui and store results of recipe
-
-            await state.singleRecipe.getSingleRecipe()
-            console.log(state.singleRecipe)
-        }
-
-        catch (error) {
-            `Something went wrong please try again later ${error}`
-        }
 
     }
+
+    catch (error) {
+        `Something went wrong please try again later ${error}`
+    }
+
+
+    console.log(state.singleRecipe)
+
 }
 
 
@@ -79,6 +88,12 @@ window.addEventListener('hashchange', e => {
 
 //whenever the page is loaded trigger the event
 window.addEventListener('load', e => {
-    controlRecipe(window.location.hash.replace('#', ''))
+
+
+    const id = window.location.hash.replace('#', '')
+    if (id) {
+        console.log('load work')
+        controlRecipe(id)
+    }
 })
 

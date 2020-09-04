@@ -68,6 +68,9 @@ const controlRecipe = async (id) => {
         await state.singleRecipe.getSingleRecipe()
         state.singleRecipe.coockTime()
         state.singleRecipe.serving()
+        state.singleRecipe.parseIngredients()
+
+
 
 
     }
@@ -77,18 +80,20 @@ const controlRecipe = async (id) => {
     }
 
 
-    console.log(state.singleRecipe)
+    console.log('this shit', state.singleRecipe)
 
 }
 
 
 window.addEventListener('hashchange', e => {
     controlRecipe(window.location.hash.replace('#', '')) // replace hash with empty string
+    console.log(state.singleRecipe)
+
+
 })
 
 //whenever the page is loaded trigger the event
 window.addEventListener('load', e => {
-
 
     const id = window.location.hash.replace('#', '')
     if (id) {
@@ -96,4 +101,6 @@ window.addEventListener('load', e => {
         controlRecipe(id)
     }
 })
+
+console.log('aaaaaaaaaaaaa')
 
